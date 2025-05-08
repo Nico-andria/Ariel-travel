@@ -7,7 +7,7 @@ import about1 from "../assets/images/ariel/about-1.jpg";
 import about2 from "../assets/images/ariel/about-2.jpg";
 import about3 from "../assets/images/ariel/about-3.jpg";
 
-import Subtitle from "../../../frontend/src/shared/Subtitle";
+import Subtitle from "../shared/Subtitle";
 import ServiceList from "../services/ServiceList";
 import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 import GalleryImages from "../components/Image-gallery/GalleryImages";
