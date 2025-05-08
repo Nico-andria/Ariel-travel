@@ -1,0 +1,88 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Container for the About section */
+.about-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Style pour chaque section en parallax */
+.parallax {
+  position: relative;
+  height: 50vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+#section1 {
+  background-image: url("../assets/images/ariel/groupe-nosy-be.jpg"); /* Changez l'URL de l'image ici */
+}
+
+#section2 {
+  background-image: url("../assets/images/ariel/luxury.jpg"); /* Changez l'URL de l'image ici */
+}
+
+#section3 {
+  background-image: url("../assets/images/ariel/seaside-1.jpg"); /* Changez l'URL de l'image ici */
+}
+
+/* Contenu centré dans chaque section */
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  /* background: rgba(0, 0, 0, 0.5); */
+  border-radius: 10px;
+  max-width: 80%;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.2rem;
+}
+.section__div {
+  height: auto;
+  justify-content: center;
+  padding: 50px;
+}
+.who_are_we {
+  background: white;
+}
+.landyPhoto {
+  border-radius: 25px;
+  border: 2px solid var(--secondary-color);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+}
+.founder__title,
+.about__title {
+  font-family: var(--subtitle-font-name);
+  font-weight: bold;
+}
+.about__title {
+  font-size: 100px;
+  color: var(--secondary-color);
+}
+.icon {
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}

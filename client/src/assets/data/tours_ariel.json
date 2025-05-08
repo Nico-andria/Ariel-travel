@@ -1,0 +1,157 @@
+[
+  {
+    "_id": {
+      "$oid": "66faa4ae52ba7f89043934f5"
+    },
+    "title": "The Best of Madagascar",
+    "city": "Morondava",
+    "address": "South of Madagascar",
+    "distance": 300,
+    "price": 99,
+    "maxGroupSize": 10,
+    "desc": "this is the description",
+    "reviews": [],
+    "timelines": [
+      {
+        "Day 1": "rth eteeythe"
+      },
+      {
+        "Day 2": "ejtet"
+      },
+      {
+        "Day 3": "lekghzergrehtyjeyzeruhgez"
+      },
+      {
+        "Day 4": "ejtyjbe"
+      },
+      {
+        "Day 5": "trehnty,rybe"
+      },
+      {
+        "Day 6": "jhunjtryjn"
+      }
+    ],
+    "photo": "/ariel/photo-2.jpg",
+    "featured": true
+  },
+  {
+    "_id": {
+      "$oid": "66faa4ae52ba7f89043934f6"
+    },
+    "title": "Lemurs discovery",
+    "city": "Bali",
+    "address": "Somewhere in Indonesia",
+    "distance": 400,
+    "price": 99,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [],
+    "timelines": [
+      {
+        "Day 1": "hrzhtrhert"
+      },
+      {
+        "Day 2": "hrzthethetr"
+      },
+      {
+        "Day 3": "lekghzergrehtyjeyzeruhgez"
+      },
+      {
+        "Day 4": "lekghzergrehtyjeyzeruhgez"
+      },
+      {
+        "Day 5": "ththnzue-ne"
+      }
+    ],
+    "photo": "/ariel/lemurs.jpg",
+    "featured": true
+  },
+  {
+    "_id": {
+      "$oid": "66faa4ae52ba7f89043934f7"
+    },
+    "title": "Madagascar wildlife",
+    "city": "Bangkok",
+    "address": "Somewhere in Thailand",
+    "distance": 500,
+    "price": 99,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [],
+    "timelines": [
+      {
+        "Day 1": "hrzhtrhert"
+      }
+    ],
+    "photo": "/ariel/wildlife.jpg",
+    "featured": true
+  },
+  {
+    "_id": {
+      "$oid": "66faa4ae52ba7f89043934f8"
+    },
+    "title": "Nature & seaside stay",
+    "city": "Phuket",
+    "address": "Somewhere in Thailand",
+    "distance": 500,
+    "price": 99,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [],
+    "timelines": [
+      {
+        "Day 1": "hrzhtrhert"
+      },
+      {
+        "Day 2": "hrzthethetr"
+      },
+      {
+        "Day 3": "lekghzergrehtyjeyzeruhgez"
+      }
+    ],
+    "photo": "/ariel/seaside.jpg",
+    "featured": true
+  },
+  {
+    "_id": {
+      "$oid": "66faa4ae52ba7f89043934f9"
+    },
+    "title": "Madagascar Luxury tour",
+    "city": "Bali",
+    "address": "Somewhere in Indonesia",
+    "distance": 500,
+    "price": 99,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [
+      {
+        "$oid": "66ffe9af57283e3d405261a7"
+      },
+      {
+        "$oid": "67068b93d56601d06cbd136b"
+      },
+      {
+        "$oid": "67068ba3d56601d06cbd1372"
+      }
+    ],
+    "timelines": [
+      {
+        "Day 1": "hrzhtrhert"
+      },
+      {
+        "Day 2": "hrzthethetr"
+      },
+      {
+        "Day 3": "lekghzergrehtyjeyzeruhgez"
+      },
+      {
+        "Day 4": "lekghzergrehtyjeyzeruhgez"
+      }
+    ],
+    "photo": "/ariel/luxury.jpg",
+    "featured": true,
+    "updatedAt": {
+      "$date": "2024-10-09T13:56:51.947Z"
+    }
+  }
+]

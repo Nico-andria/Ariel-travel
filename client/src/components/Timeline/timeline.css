@@ -1,0 +1,121 @@
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 100px auto;
+  /* background: var(--secondary-color); */
+}
+.timeline .container {
+  padding: 10px 50px;
+  /* border: 1px solid var(--secondary-color); */
+  border-radius: 16px;
+  position: relative;
+  width: 50%;
+  animation: movedown 1s linear forwards;
+  opacity: 0;
+  width: 100%;
+  padding-left: 80px;
+  padding-right: 25px;
+}
+@keyframes movedown {
+  0% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.timeline .container .nombre:nth-child(1) {
+  margin-top: -35px;
+}
+.timeline .container:nth-child(1) {
+  animation-delay: 0s;
+}
+.timeline .container:nth-child(2) {
+  animation-delay: 1s;
+}
+.timeline .container:nth-child(3) {
+  animation-delay: 2s;
+}
+.timeline .container:nth-child(4) {
+  animation-delay: 3s;
+}
+.timeline .container:nth-child(5) {
+  animation-delay: 4s;
+}
+.timeline .container:nth-child(6) {
+  animation-delay: 5s;
+}
+.text-box {
+  padding: 20px 30px;
+  background: #fff;
+  position: relative;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.left-container {
+  left: 0;
+}
+
+.timeline .container .nombre {
+  position: absolute;
+  right: -20px;
+  top: 32px;
+  z-index: 10;
+  left: -20px;
+
+  width: 50px; /* Largeur du cercle */
+  height: 50px; /* Hauteur égale à la largeur pour un cercle parfait */
+  border-radius: 50%; /* Arrondir les bords pour faire un cercle */
+  right: -20px; /* Position du cercle à droite */
+  top: 32px; /* Position verticale du cercle */
+  z-index: 10;
+  border: 5px solid var(--secondary-color); /* Bordure du cercle */
+  background-color: #fff; /* Couleur de fond du cercle */
+  display: flex; /* Utilisation de flexbox pour centrer le contenu */
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  font-size: 18px; /* Taille de la police du nombre */
+  font-weight: bold; /* Gras pour le nombre */
+}
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  /* height: 100%; */
+  background: var(--secondary-color);
+  top: 0;
+  left: 5px;
+  margin-left: -3px;
+  z-index: -1;
+  animation: moveline 6s linear forwards;
+}
+
+@keyframes moveline {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+.text-box h2 {
+  font-weight: 600;
+}
+.text-box small {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.arrow {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid var(--secondary-color);
+  left: -25px;
+}

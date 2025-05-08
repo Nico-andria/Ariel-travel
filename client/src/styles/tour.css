@@ -1,0 +1,32 @@
+.pagination span {
+  width: 2rem;
+  height: 2rem;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--secondary-color);
+  color: var(--heading-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.active__page {
+  background: var(--secondary-color);
+  color: #fff !important;
+}
+.listeTours {
+  padding: 100px 0 100px 0;
+  /* background: var(--primary-color); */
+  height: auto;
+}
+/* .searchbar__container {
+   background: var(--primary-color); 
+   background: linear-gradient(
+    to top,
+    transparent 10%,
+    var(--primary-color) 100%
+  ); 
+} */
