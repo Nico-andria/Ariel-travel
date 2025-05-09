@@ -117,7 +117,8 @@ const TourDetails = () => {
                     <div className="carousel-inner">
                       <div className="carousel-item active">
                         <img
-                          src={`../src/assets/images${photo}`}
+                          src={`/images${photo}`}
+                          //   src={`../src/assets/images${photo}`}
                           alt="Los Angeles"
                           className="d-block"
                           style={{ width: "100%" }}
@@ -125,7 +126,8 @@ const TourDetails = () => {
                       </div>
                       <div className="carousel-item">
                         <img
-                          src={`../src/assets/images${photo}`}
+                          src={`/images${photo}`}
+                          //   src={`../src/assets/images${photo}`}
                           alt="Chicago"
                           className="d-block"
                           style={{ width: "100%" }}
@@ -133,7 +135,8 @@ const TourDetails = () => {
                       </div>
                       <div className="carousel-item">
                         <img
-                          src={`../src/assets/images${photo}`}
+                          src={`/images${photo}`}
+                          //   src={`../src/assets/images${photo}`}
                           alt="New York"
                           className="d-block"
                           style={{ width: "100%" }}

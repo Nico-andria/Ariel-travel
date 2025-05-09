@@ -15,7 +15,8 @@ const TourCard = ({ tour }) => {
     <div>
       <Card>
         <div className="tour__img">
-          <img src={`src/assets/images${photo}`} alt="tour-img" height={200} />
+          <img src={`/images${photo}`} alt="tour-img" height={200} />
+          {/* <img src={`src/assets/images${photo}`} alt="tour-img" height={200} /> */}
           {type && <span>{type}</span>}
         </div>
 
