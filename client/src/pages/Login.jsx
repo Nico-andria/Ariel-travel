@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, FormGroup, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
@@ -9,6 +9,7 @@ import userIcon from "../assets/images/user.png";
 import { accountService } from "../_services/account.service";
 import "../styles/login.css";
 import { useDispatch, useSelector } from "react-redux";
+import { SetUser } from "../redux/usersSlice";
 
 const Login = () => {
   const { user } = useSelector((state) => state.users);
@@ -40,7 +41,7 @@ const Login = () => {
         // Décodage du token pour obtenir les infos utilisateur
         const decodedUser = jwtDecode(response.data);
         // Dispatch pour mettre à jour le context avec les données utilisateur
-        dispatch({ type: "LOGIN_SUCCESS", payload: decodedUser });
+        dispatch(SetUser(decodedUser));
         message.success(response.message);
         // Redirige vers la page d'accueil
         navigate("/");

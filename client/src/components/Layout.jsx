@@ -1,14 +1,11 @@
-import Routers from "../routers/Routers";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Menu from "./Menu";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
-      {/* <Navbar /> */}
       <Menu />
-      <Routers />
+      <div>{children}</div>
       <Footer />
     </>
   );
