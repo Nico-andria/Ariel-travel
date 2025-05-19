@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import CommonSection from "../shared/CommonSection";
 
 import "../styles/tour.css";
@@ -46,7 +46,14 @@ const Tours = () => {
           {!loading && !error && (
             <Row>
               {tours?.map((tour) => (
-                <Col lg="3" md="6" sm="6" className="mb-4" id={tour._id}>
+                <Col
+                  lg="3"
+                  md="6"
+                  sm="6"
+                  className="mb-4"
+                  id={tour._id}
+                  key={tour._id}
+                >
                   <TourCard tour={tour} />
                 </Col>
               ))}
