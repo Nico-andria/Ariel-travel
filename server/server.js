@@ -7,27 +7,6 @@ const cookieParser = require("cookie-parser");
 const connection = require("./db");
 const app = express();
 
-const corsOptions = {
-  origin: true,
-  //   origin: "http://localhost:5173/",
-  credentials: true,
-};
-
-// ⚠️ Pour toutes les routes sauf /webhook
-app.use((req, res, next) => {
-  if (req.originalUrl === "/webhook") {
-    next();
-  } else {
-    express.json()(req, res, next);
-  }
-});
-
-const tourRoute = require("./routes/toursRoute");
-const userRoute = require("./routes/usersRoute");
-// const authRoute = require("./routes/authRoute");
-const reviewRoute = require("./routes/reviewsRoute");
-const bookingRoute = require("./routes/bookingRoute");
-
 // ⚠️ Webhook Stripe : avant express.json
 const { stripeWebhook } = require("./controllers/BookingController");
 
@@ -37,6 +16,18 @@ app.post(
   stripeWebhook
 );
 
+const corsOptions = {
+  origin: true,
+  //   origin: "http://localhost:5173/",
+  credentials: true,
+};
+
+const tourRoute = require("./routes/toursRoute");
+const userRoute = require("./routes/usersRoute");
+const authRoute = require("./routes/authRoute");
+const reviewRoute = require("./routes/reviewsRoute");
+const bookingRoute = require("./routes/bookingRoute");
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
@@ -44,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/tours", tourRoute);
 app.use("/api/users", userRoute);
-// app.use("/api/auth", authRoute);
+app.use("/api/auth", authRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/booking", bookingRoute);
 

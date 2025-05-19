@@ -370,9 +370,18 @@ exports.login = async (req, res) => {
         });
       }
       // generate token with JWT
-      const token = jwt.sign({ userId: user._id }, process.env.JWT, {
-        expiresIn: "1d",
-      });
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          lastName: user.lastName,
+          email: user.email,
+          phoneNumber: user.phoneNumber,
+        },
+        process.env.JWT,
+        {
+          expiresIn: "1d",
+        }
+      );
       res.send({
         message: "Connexion réussie",
         data: token,

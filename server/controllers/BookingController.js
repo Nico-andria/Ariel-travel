@@ -116,6 +116,7 @@ exports.payed = async (req, res) => {
 // stripe
 exports.createCheckoutSession = async (req, res) => {
   const {
+    userId,
     amount,
     customerEmail,
     bookingId,
@@ -126,6 +127,13 @@ exports.createCheckoutSession = async (req, res) => {
     type,
   } = req.body;
 
+  if (!userId) {
+    console.log("Il manque l'userId");
+    return res
+      .status(400)
+      .json({ error: "userId manquant dans le corps de la requête" });
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -134,11 +142,11 @@ exports.createCheckoutSession = async (req, res) => {
         {
           price_data: {
             currency: "usd",
-            unit_amount: amount * 100, // Stripe attend des centimes
+            unit_amount: Math.round(Number(amount) * 100),
             product_data: {
               name: tourName,
               description: `Booking date: ${bookAt} and Guest size : ${guestSize}`,
-              images: [photo], // Photo de la tour
+              // images: [photo], // Photo de la tour
             },
           },
           quantity: 1,
@@ -148,7 +156,7 @@ exports.createCheckoutSession = async (req, res) => {
       success_url: `${process.env.CLIENT_URL}/thank-you`,
       cancel_url: `${process.env.CLIENT_URL}/tours`,
       metadata: {
-        userId: req.body.userId, // ID de l'utilisateur pour le webhook
+        userId: userId, // ID de l'utilisateur pour le webhook
         bookingId, // ID de la réservation pour le webhook
         tourId: req.body.tourId, // Tour ID pour le lien avec la tour
         title: tourName, // Titre de la réservation
@@ -168,7 +176,9 @@ exports.createCheckoutSession = async (req, res) => {
 };
 
 exports.stripeWebhook = async (req, res) => {
+  console.log("⚡ Webhook reçu !"); // <-- Nouveau log
   const sig = req.headers["stripe-signature"];
+  console.log("Signature:", sig); // <-- Nouveau log
 
   let event;
   try {
@@ -178,13 +188,21 @@ exports.stripeWebhook = async (req, res) => {
       sig,
       process.env.STRIPE_WEBHOOK_KEY
     );
+    console.log("Événement Stripe:", event.type); // <-- Nouveau log
   } catch (err) {
     console.error("❌ Erreur de signature webhook:", err);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
   // Gérer l'événement de session complétée
+  console.log("Event received:", event.type);
+
   if (event.type === "checkout.session.completed") {
+    console.log(
+      "Détails de la session:",
+      JSON.stringify(event.data.object, null, 2)
+    ); // <-- Nouveau log détaillé
+    console.log("Session completed:", event.data.object);
     const session = event.data.object;
 
     // Vérifier que le paiement est réussi

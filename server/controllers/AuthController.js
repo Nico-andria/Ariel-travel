@@ -32,20 +32,18 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
-    // if user doesn't exist
     if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
     }
-    //if user exist then check the password
+
     const checkCorrectPassword = await bcrypt.compare(
       req.body.password,
       user.password
     );
 
-    // if password is incorrect
     if (!checkCorrectPassword) {
       return res.status(401).json({
         success: false,
@@ -55,21 +53,23 @@ exports.login = async (req, res) => {
 
     const { password, role, ...rest } = user._doc;
 
-    // create jwt token
     const token = jwt.sign(
       {
         id: user._id,
         role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    // set token in the browser
     res
       .cookie("accessToken", token, {
         httpOnly: true,
-        expires: token.expiresIn,
+        maxAge: 60 * 60 * 1000, // 1 heure
       })
       .status(200)
       .json({
