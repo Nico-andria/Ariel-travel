@@ -36,6 +36,7 @@ let getMyInfo = async () => {
 };
 
 export const userService = {
+  getUserById,
   getAllUsers,
   getUser,
   getMyInfo,

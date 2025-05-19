@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../styles/booking.css";
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const BookingTab = ({ tour, avgRating }) => {
   // Variables récupérées du tour
-  const { _id, price, pricePremium, reviews, title, bookAt, photo } = tour;
+  const { _id, price, pricePremium, reviews, title } = tour;
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.users);
@@ -46,6 +46,7 @@ const BookingTab = ({ tour, avgRating }) => {
         price: totalAmount,
       }));
     }
+    console.log(user);
   }, [user]);
 
   useEffect(() => {
@@ -70,6 +71,21 @@ const BookingTab = ({ tour, avgRating }) => {
     const finalPrice = selectedPrice * Number(booking.guestSize) + serviceFee;
 
     const selectedType = activeTab === "normal" ? "normal" : "premium";
+    console.log({
+      body: JSON.stringify({
+        userId: user.userId,
+        tourId: _id,
+        amount: finalPrice,
+        customerEmail: user.email,
+        tourName: title,
+        fullName: user.lastName,
+        guestSize: booking.guestSize,
+        phoneNumber: user.phoneNumber,
+        bookAt: booking.bookAt,
+        type: selectedType,
+        photo: `http://localhost:5173/src/assets/images/${tour.photo}`,
+      }),
+    });
     try {
       setIsLoading(true);
       // On envoie juste les infos à Stripe pour créer la session
@@ -82,7 +98,7 @@ const BookingTab = ({ tour, avgRating }) => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            userId: user._id,
+            userId: user.userId,
             tourId: _id,
             amount: finalPrice,
             customerEmail: user.email,
@@ -193,6 +209,7 @@ const BookingTab = ({ tour, avgRating }) => {
               id="bookAt"
               required
               onChange={handleChange}
+              value={booking.bookAt}
               style={{ cursor: "pointer" }}
             />
             <input
@@ -201,6 +218,7 @@ const BookingTab = ({ tour, avgRating }) => {
               id="guestSize"
               required
               onChange={handleChange}
+              value={booking.guestSize}
             />
           </FormGroup>
         </Form>

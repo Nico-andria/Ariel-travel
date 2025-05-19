@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 // import Loader from "../_helpers/Loader";
 import Swal from "sweetalert2";
@@ -6,7 +6,7 @@ import { Tag } from "antd";
 import moment from "moment";
 import { bookingService } from "../_services/booking.service";
 // import { AuthContext } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
 import "../styles/booking.css";
@@ -14,8 +14,9 @@ import "../styles/booking.css";
 import { DateTime } from "luxon";
 
 const MyBookings = () => {
-  const { user } = useSelector((state) => state.users);
-  const navigate = useNavigate();
+  const user = useSelector((state) => state.users);
+
+  // const navigate = useNavigate();
 
   const [bookings, setBookings] = useState([]);
 
@@ -23,31 +24,34 @@ const MyBookings = () => {
   const [cancelIsLoading, setCancelIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
+    const userId = user.user._id;
+    console.log("User state:", user.user._id);
+    if (!userId) return;
+
+    if (!userId) return;
+
+    const fetchData = async () => {
       try {
-        if (!user?._id) return;
-
         setLoading(true);
-
         const response = await bookingService.getBookingsByUserId({
-          userId: user._id,
+          userId: user.user._id,
         });
-
         setBookings(response?.data);
+        console.log(response);
         setLoading(false);
       } catch (error) {
-        setLoading(false);
+        console.log(error);
         setError(error);
       }
-    }
+    };
 
     fetchData();
-  }, [user?._id]);
+  }, [user]);
 
-  async function cancelBooking(bookingId, roomId) {
+  async function cancelBooking(bookingId, tourId) {
     try {
       setCancelIsLoading(true);
       const token = localStorage.getItem("token");
@@ -76,6 +80,7 @@ const MyBookings = () => {
       );
     } catch (error) {
       setLoading(false);
+      setError("Erreur :", error);
       Swal.fire("Oops", "Il semble qu'il y ait eu une erreur", "error");
     }
   }
@@ -88,7 +93,7 @@ const MyBookings = () => {
         <div className="col-md-12">
           {bookings.length === 0 && (
             <div className="alert alert-danger" role="alert">
-              Il n'y a aucune réservation
+              There is no booking in your name
             </div>
           )}
           {Array.isArray(bookings) &&
@@ -116,7 +121,7 @@ const MyBookings = () => {
                             Client :
                             <b>
                               {" "}
-                              {user.firstName} {user.lastName}
+                              {user.user.firstName} {user.user.lastName}
                             </b>
                           </p>
                           <p>

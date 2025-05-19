@@ -1,10 +1,10 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/tour-details.css";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useParams } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRating";
 import avatar from "../assets/images/avatar.jpg";
-import Booking from "../components/Booking/Booking";
+// import Booking from "../components/Booking/Booking";
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 // import { AuthContext } from "../context/AuthContext";
@@ -18,6 +18,7 @@ const TourDetails = () => {
   const [tourRating, setTourRating] = useState(null);
 
   const { user } = useSelector((state) => state.users);
+  console.log(user);
 
   const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
 
